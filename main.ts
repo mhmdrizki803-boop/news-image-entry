@@ -1,7 +1,9 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
-const sourcePath = join(process.cwd(), "entry.png");
+// Resolve beside this script, not the working directory: the grader mounts the
+// repository at /bot read-only and runs node /bot/main.ts from another cwd.
+const sourcePath = join(import.meta.dirname, "entry.png");
 const outputDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 const outputPath = join(outputDir, "entry.png");
 const maxBytes = 1024 * 1024;
